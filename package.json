@@ -1,0 +1,13 @@
+{
+  "name": "toss-4cut-app",
+  "version": "1.0.0",
+  "description": "토스 미니앱 - AI 4컷 사진 생성",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build complete'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "replicate": "^0.32.0"
+  }
+}
