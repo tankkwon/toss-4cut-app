@@ -1,4 +1,4 @@
-import Replicate from 'replicate';
+const Replicate = require('replicate');
 
 // 악세사리 프롬프트 4종
 const ACCESSORY_PROMPTS = [
@@ -24,7 +24,7 @@ const ACCESSORY_PROMPTS = [
   }
 ];
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // CORS 설정
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -36,6 +36,11 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // API 토큰 확인
+  if (!process.env.REPLICATE_API_TOKEN) {
+    return res.status(500).json({ error: 'REPLICATE_API_TOKEN이 설정되지 않았습니다' });
   }
 
   try {
